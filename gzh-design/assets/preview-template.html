@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} · 排版预览</title>
+<style>
+  body { margin: 0; background: #e9ebee; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; -webkit-text-size-adjust: 100%; }
+  .bar { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: #fff; box-shadow: 0 2px 12px rgba(17, 24, 39, .1); display: flex; align-items: center; justify-content: space-between; padding: 0 18px; z-index: 50; }
+  .bar .hint { font-size: 13px; color: #5b6472; line-height: 1.4; }
+  .bar .hint strong { color: #16181d; }
+  .copy-btn { background: #1b3a5c; color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 9px rgba(27, 58, 92, .3); transition: background .15s, transform .08s; }
+  .copy-btn:hover { background: #142d49; }
+  .copy-btn:active { transform: translateY(1px); }
+  .toast { position: fixed; top: 68px; left: 50%; transform: translateX(-50%); background: #16181d; color: #fff; padding: 10px 18px; border-radius: 9px; font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 51; max-width: 86vw; text-align: center; }
+  .toast.visible { opacity: 1; }
+  .stage { max-width: 700px; margin: 80px auto 60px; padding: 0 8px; }
+  @media (max-width: 520px) { .bar .hint { max-width: 140px; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="hint">下面是排版效果，点右边的<strong>复制</strong>直接粘到公众号编辑器</span>
+  <button class="copy-btn" id="copyButton" type="button">复制到公众号</button>
+</div>
+<div class="toast" id="toast"></div>
+<div class="stage">
+  <div id="articleRoot">
+<!--GZH_CONTENT-->
+  </div>
+</div>
+<script>
+(function () {
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function flashToast(message) {
+    toastEl.textContent = message;
+    toastEl.classList.add('visible');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('visible'); }, 2600);
+  }
+
+  function copyRenderedArticle() {
+    var root = document.getElementById('articleRoot');
+    var range = document.createRange();
+    range.selectNodeContents(root);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    var succeeded = false;
+    try { succeeded = document.execCommand('copy'); } catch (err) { succeeded = false; }
+    selection.removeAllRanges();
+
+    var button = document.getElementById('copyButton');
+    var originalLabel = button.textContent;
+    if (succeeded) {
+      flashToast('已复制，去公众号编辑器按 Ctrl/Cmd+V 粘贴');
+      button.textContent = '已复制';
+      setTimeout(function () { button.textContent = originalLabel; }, 2000);
+    } else {
+      flashToast('自动复制失败，手动全选（Ctrl/Cmd+A）再复制（Ctrl/Cmd+C）');
+    }
+  }
+
+  document.getElementById('copyButton').addEventListener('click', copyRenderedArticle);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gzh-design · 9 套主题排版预览</title>
+<style>
+  body{margin:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:#1f2937}
+  header{padding:32px 24px 8px;max-width:1480px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 8px}
+  .sub{color:#6b7280;font-size:14px;line-height:1.7;margin:0 0 4px}
+  .grid{display:flex;flex-wrap:wrap;gap:24px;padding:16px 24px 32px;max-width:1480px;margin:0 auto}
+  .card{background:#fff;border-radius:14px;box-shadow:0 4px 16px -6px rgba(0,0,0,.12);overflow:hidden;width:380px;display:flex;flex-direction:column}
+  .bar{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid #f0f0f0}
+  .dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.06)}
+  .tname{font-weight:700;font-size:15px}
+  .tmeta{margin-left:auto;font-size:11px;color:#9ca3af;font-family:monospace}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;background:#ecfdf5;color:#059669;margin-left:6px}
+  iframe{width:100%;height:680px;border:0;background:#fff}
+  footer{max-width:1480px;margin:0 auto;padding:8px 24px 40px;color:#9ca3af;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>gzh-design · 9 套主题排版预览</h1>
+  <p class="sub">同一篇示例文章用 9 个排版（品牌深蓝·蓝图的 4 套配色变体，以及宣纸·朱印/极光链语/原石·雅痕/铅字·号外/便笺·手帐）各排一遍。每个画框约等于公众号手机宽度，可在框内滚动查看全文。</p>
+  <p class="sub">全部通过合规校验：无 <code>div/class/style</code> 标签、文字 <code>span leaf</code> 包裹、标点全角。不够用时可让 AI 用主题生成器现生成一套。</p>
+</header>
+<div class="grid" id="grid"></div>
+<footer>示例画廊 · 主题清单见 references/theme-index.md</footer>
+<script>
+  const THEMES=[
+    ["品牌深蓝·蓝图（金）","#020581","brand-blueprint.html","default"],
+    ["品牌深蓝·蓝图（银）","#0F1B4C","brand-blueprint-silver.html",""],
+    ["品牌深蓝·蓝图（铜）","#142850","brand-blueprint-copper.html",""],
+    ["品牌深蓝·蓝图（青）","#1B3A5C","brand-blueprint-teal.html",""],
+    ["宣纸·朱印","#A92524","ink-seal.html",""],
+    ["极光链语","#6D4FD6","aurora-chain.html",""],
+    ["原石·雅痕","#B8923F","stone-patina.html",""],
+    ["铅字·号外","#C8102E","press-extra.html",""],
+    ["便笺·手帐","#F7D774","memo-notebook.html",""],
+  ];
+  const grid=document.getElementById('grid');
+  THEMES.forEach(function(t){
+    var name=t[0],color=t[1],file=t[2],tag=t[3];
+    var slug=file.replace('.html','');
+    var card=document.createElement('div');
+    card.className='card';
+    card.innerHTML=
+      '<div class="bar">'+
+        '<span class="dot" style="background:'+color+'"></span>'+
+        '<span class="tname">'+name+(tag?'<span class="tag">'+tag+'</span>':'')+'</span>'+
+        '<span class="tmeta">'+slug+'</span>'+
+      '</div>'+
+      '<iframe src="'+file+'" loading="lazy" title="'+name+'"></iframe>';
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>

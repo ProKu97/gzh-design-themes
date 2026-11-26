@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>公众号排版主题图鉴 · gzh-design</title>
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; padding: clamp(8px, 4vw, 48px) 8px; background: light-dark(#e8e4d9, #191918); }
+  main { max-width: 980px; margin-inline: auto; }
+  button { cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+<section id="zh-wechat-theme-atlas" aria-label="公众号排版主题图鉴">
+  <header class="atlas-header">
+    <p>gzh-design · 公众号排版</p>
+    <h1>主题图鉴</h1>
+    <div class="atlas-intro">同一段文章，多套主题 + 配色变体。点选查看版式，把选中的主题指令随文章一起发给执行排版的 Agent。</div>
+  </header>
+
+  <div class="atlas-themes" role="group" aria-label="选择排版主题"></div>
+
+  <div class="atlas-detail">
+    <div class="atlas-proof">
+      <div class="atlas-proof-label"><span>正文样张</span><span>各主题使用同一文案</span></div>
+      <article class="atlas-article" aria-label="排版样张">
+        <h3 class="proof-title">让交接有据可查</h3>
+        <p class="proof-lead">一次交接结束后，也要让后来的人知道，事情是如何确认的。</p>
+        <div class="proof-chapter"><span>01</span><h4>把过程记录下来</h4></div>
+        <p class="proof-paragraph">把记录留在交接现场，让收到的人能<span>按顺序查到依据</span>。</p>
+        <ol class="proof-steps">
+          <li><span class="proof-number" aria-hidden="true">01</span><div><strong>登记</strong><p>写清交接对象和时间。</p></div></li>
+          <li><span class="proof-number" aria-hidden="true">02</span><div><strong>核验</strong><p>由接收方核对并确认。</p></div></li>
+        </ol>
+        <blockquote class="proof-close">留下一份记录，也留下一条可追溯的线索。</blockquote>
+      </article>
+    </div>
+
+    <aside class="atlas-selection" aria-label="所选主题信息">
+      <div class="atlas-identity" aria-live="polite">
+        <h2 class="atlas-name"></h2>
+        <div class="atlas-palette" aria-label="主题主色"></div>
+      </div>
+      <dl>
+        <div><dt>适合文章</dt><dd class="atlas-use"></dd></div>
+        <div><dt>版式特征</dt><dd class="atlas-traits"></dd></div>
+      </dl>
+      <div class="atlas-action">
+        <label for="zh-atlas-prompt">随文章发送这句话</label>
+        <input id="zh-atlas-prompt" type="text" readonly>
+        <button type="button" class="atlas-copy">复制主题指令</button>
+        <p class="atlas-status" role="status"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  #zh-wechat-theme-atlas {
+    --canvas: light-dark(#f4f1e9, #252522);
+    --ink: light-dark(#24231e, #f2efe7);
+    --subtle: light-dark(#635f55, #c1bdb2);
+    --rule: light-dark(#d7d0c2, #53504a);
+    --accent-ink: light-dark(#9d412e, #eea490);
+    --focus: light-dark(#89523b, #f4ad99);
+    --action: light-dark(#29271f, #f2e8d9);
+    --action-text: light-dark(#fffaf1, #262218);
+    background: var(--canvas);
+    color: var(--ink);
+    padding: clamp(15px, 3.6vw, 37px);
+    font: 400 14px/1.55 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif;
+    border-radius: 12px;
+  }
+  #zh-wechat-theme-atlas *, #zh-wechat-theme-atlas *::before, #zh-wechat-theme-atlas *::after { box-sizing: border-box; }
+  #zh-wechat-theme-atlas :is(h1, h2, h3, h4, p, dl, dd, ol, blockquote) { margin: 0; }
+  #zh-wechat-theme-atlas :is(button, input) { font: inherit; }
+  #zh-wechat-theme-atlas :is(button, input):focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  #zh-wechat-theme-atlas .atlas-header { padding-right: min(70px, 9%); }
+  #zh-wechat-theme-atlas .atlas-header p { color: var(--accent-ink); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+  #zh-wechat-theme-atlas .atlas-header h1 { font: 700 clamp(34px, 5.4vw, 56px)/1.18 'Noto Serif SC', 'Songti SC', SimSun, serif; letter-spacing: .05em; margin: 8px 0; }
+  #zh-wechat-theme-atlas .atlas-intro { color: var(--subtle); }
+  #zh-wechat-theme-atlas .atlas-themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 7px; margin: 20px 0 23px; }
+  #zh-wechat-theme-atlas .atlas-option { display: flex; align-items: center; flex-direction: column; gap: 6px; min-width: 0; padding: 7px 4px 8px; background: transparent; border: 1px solid var(--rule); border-radius: 7px; color: var(--ink); line-height: 1.35; font-size: 12px; font-weight: 650; }
+  #zh-wechat-theme-atlas .atlas-option:hover { border-color: var(--focus); }
+  #zh-wechat-theme-atlas .atlas-option[aria-pressed="true"] { border-color: var(--focus); box-shadow: inset 0 0 0 1px var(--focus); background: color-mix(in srgb, var(--canvas), var(--accent-ink) 6%); }
+  #zh-wechat-theme-atlas .atlas-option-name span { white-space: nowrap; }
+  #zh-wechat-theme-atlas .atlas-mini { width: min(100%, 92px); height: 49px; display: grid; align-content: center; gap: 4px; padding: 7px 10px; background: var(--paper); border: 1px solid #e0dcd1; border-radius: 3px; }
+  #zh-wechat-theme-atlas .atlas-mini span { display: block; height: 4px; border-radius: 2px; }
+  #zh-wechat-theme-atlas .atlas-mini .mini-top { width: 89%; height: 11px; background: var(--tint); border-left: 3px solid var(--main); }
+  #zh-wechat-theme-atlas .atlas-mini .mini-heading { width: 62%; background: var(--main); }
+  #zh-wechat-theme-atlas .atlas-mini .mini-body { background: var(--tint); height: 10px; }
+  #zh-wechat-theme-atlas [data-theme^="brand-blueprint"] .mini-top { width: 100%; background: var(--main); border-left-color: var(--accent, #d6a841); }
+  #zh-wechat-theme-atlas [data-theme^="brand-blueprint"] .mini-body { background: var(--paper); border-left: 3px solid var(--accent, #d6a841); }
+  #zh-wechat-theme-atlas [data-theme="ink-seal"] .atlas-mini { background: #fbf8f1; }
+  #zh-wechat-theme-atlas [data-theme="ink-seal"] .mini-top { width: 24%; height: 24px; border: 2px solid #a92524; background: transparent; border-radius: 2px; }
+  #zh-wechat-theme-atlas [data-theme="ink-seal"] .mini-heading { background: #1c1c1a; }
+  #zh-wechat-theme-atlas [data-theme="ink-seal"] .mini-body { background: #f3e3dd; }
+  #zh-wechat-theme-atlas [data-theme="aurora-chain"] .mini-top { width: 100%; background: linear-gradient(105deg, #2e2a6b, #6d4fd6); border: 0; }
+  #zh-wechat-theme-atlas [data-theme="aurora-chain"] .mini-heading { background: #00c2b8; }
+  #zh-wechat-theme-atlas [data-theme="aurora-chain"] .mini-body { background: #f2effc; }
+  #zh-wechat-theme-atlas [data-theme="stone-patina"] .atlas-mini { background: #f8f6f1; }
+  #zh-wechat-theme-atlas [data-theme="stone-patina"] .mini-top { width: 28%; height: 1.5px; border: 0; background: #b8923f; }
+  #zh-wechat-theme-atlas [data-theme="stone-patina"] .mini-heading { background: #2b2824; }
+  #zh-wechat-theme-atlas [data-theme="stone-patina"] .mini-body { background: transparent; border-bottom: 1px solid #e5e0d3; }
+  #zh-wechat-theme-atlas [data-theme="press-extra"] .atlas-mini { background: #f4f1ea; border-radius: 0; }
+  #zh-wechat-theme-atlas [data-theme="press-extra"] .mini-top { width: 100%; height: 6px; border: 0; border-bottom: 2px solid #f4f1ea; background: #111111; border-radius: 0; box-shadow: 0 2px 0 #111111; }
+  #zh-wechat-theme-atlas [data-theme="press-extra"] .mini-heading { width: 30%; background: #c8102e; border-radius: 0; }
+  #zh-wechat-theme-atlas [data-theme="press-extra"] .mini-body { background: #ffffff; border-top: 2px solid #111111; border-radius: 0; }
+  #zh-wechat-theme-atlas [data-theme="memo-notebook"] .atlas-mini { background: #fffdf7; }
+  #zh-wechat-theme-atlas [data-theme="memo-notebook"] .mini-top { width: 62%; height: 10px; border: 0; background: rgba(247,215,116,0.9); border-radius: 0; }
+  #zh-wechat-theme-atlas [data-theme="memo-notebook"] .mini-heading { width: 70%; background: #2f3e5c; }
+  #zh-wechat-theme-atlas [data-theme="memo-notebook"] .mini-body { background: #e3f5ec; box-shadow: 0 1px 3px rgba(0,0,0,.12); border-radius: 1px; }
+
+  #zh-wechat-theme-atlas .atlas-detail { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(0, 1fr); align-items: start; gap: clamp(17px, 3vw, 32px); }
+  #zh-wechat-theme-atlas .atlas-proof { overflow: hidden; border: 1px solid var(--rule); border-radius: 8px; }
+  #zh-wechat-theme-atlas .atlas-proof-label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3px 14px; padding: 7px 12px; border-bottom: 1px solid var(--rule); color: var(--subtle); font-size: 12px; }
+  #zh-wechat-theme-atlas .atlas-proof-label span:first-child { color: var(--ink); font-weight: 650; }
+  #zh-wechat-theme-atlas .atlas-selection { padding-top: 3px; }
+  #zh-wechat-theme-atlas .atlas-name { font-size: clamp(21px, 3vw, 27px); font-weight: 750; line-height: 1.3; }
+  #zh-wechat-theme-atlas .atlas-palette { margin-top: 9px; display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--subtle); font: 12px/1.5 ui-monospace, monospace; }
+  #zh-wechat-theme-atlas .atlas-palette span { display: flex; align-items: center; gap: 6px; }
+  #zh-wechat-theme-atlas .atlas-palette i { width: 12px; height: 12px; border-radius: 50%; background: var(--swatch); border: 1px solid #8887; }
+  #zh-wechat-theme-atlas .atlas-selection dl { display: grid; gap: 11px; margin: 16px 0; }
+  #zh-wechat-theme-atlas .atlas-selection dt { font-weight: 700; }
+  #zh-wechat-theme-atlas .atlas-selection dd { margin-top: 2px; color: var(--subtle); }
+  #zh-wechat-theme-atlas .atlas-action { border-top: 1px solid var(--rule); padding-top: 13px; }
+  #zh-wechat-theme-atlas .atlas-action label { display: block; margin-bottom: 5px; color: var(--subtle); font-size: 12px; }
+  #zh-wechat-theme-atlas .atlas-action input { display: block; width: 100%; min-width: 0; background: transparent; color: var(--ink); border: 1px solid var(--rule); border-radius: 5px; padding: 8px; }
+  #zh-wechat-theme-atlas .atlas-copy { margin-top: 8px; min-height: 42px; padding: 7px 12px; border: 1px solid var(--action); border-radius: 5px; color: var(--action-text); background: var(--action); font-weight: 700; }
+  #zh-wechat-theme-atlas .atlas-copy:hover { filter: brightness(1.17); }
+  #zh-wechat-theme-atlas .atlas-status:not(:empty) { margin-top: 6px; color: var(--subtle); font-size: 12px; }
+
+  #zh-wechat-theme-atlas .atlas-article { padding: clamp(15px, 3vw, 28px); background: var(--paper); color: #262720; font-size: 14px; line-height: 1.65; }
+  #zh-wechat-theme-atlas .proof-title { color: #22231e; font-size: clamp(20px, 3vw, 25px); font-weight: 750; line-height: 1.35; }
+  #zh-wechat-theme-atlas .proof-lead { margin-top: 10px; padding: 10px 13px; background: var(--tint); }
+  #zh-wechat-theme-atlas .proof-chapter { display: flex; align-items: center; gap: 8px; margin-top: 15px; padding-bottom: 5px; }
+  #zh-wechat-theme-atlas .proof-chapter span, #zh-wechat-theme-atlas .proof-number { flex: none; font-weight: 800; font-variant-numeric: tabular-nums; }
+  #zh-wechat-theme-atlas .proof-chapter h4 { font-size: 16px; line-height: 1.4; font-weight: 750; }
+  #zh-wechat-theme-atlas .proof-paragraph { margin: 8px 0; text-indent: 2em; }
+  #zh-wechat-theme-atlas .proof-paragraph span { font-weight: 600; border-bottom: 2px solid var(--underline); }
+  #zh-wechat-theme-atlas .proof-steps { display: grid; gap: 6px; padding: 0; list-style: none; }
+  #zh-wechat-theme-atlas .proof-steps li { display: flex; gap: 8px; min-width: 0; align-items: baseline; }
+  #zh-wechat-theme-atlas .proof-steps p { font-size: 13px; }
+  #zh-wechat-theme-atlas .proof-number { font-size: 11px; color: var(--main); }
+  #zh-wechat-theme-atlas .proof-close { margin-top: 12px; padding: 8px 11px; font-size: 13px; }
+
+
+
+
+
+
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-title { color: var(--main); border-top: 3px double var(--main); padding-top: 7px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-lead { background: var(--paper); border-left: 4px solid var(--accent, #d6a841); color: #0b1033; border-radius: 0 6px 6px 0; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-chapter { background: var(--main); color: #fff; border-radius: 6px; padding: 6px 10px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-chapter span { color: var(--accent, #d6a841); border-right: 1px solid #ffffff4d; padding-right: 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-steps li { background: #fff; border: 1px solid #d6dcef; border-left: 3px solid var(--main); padding: 4px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme^="brand-blueprint"] .proof-close { background: var(--main); color: var(--paper); border-radius: 6px; }
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] { font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-lead { background: #f3e3dd; border-radius: 0; border-left: 4px solid #a92524; color: #1c1c1a; font-weight: 700; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-chapter { border-bottom: 0; background: #f6f1e7; border-left: 3px solid #a92524; padding: 6px 10px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-chapter span { color: #a92524; border: 2px solid #a92524; border-radius: 3px; width: 20px; height: 20px; display: grid; place-items: center; font-size: 12px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-paragraph { text-indent: 2em; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-steps li { background: #fffdf8; border: 1px solid #d8cfbb; border-left: 3px solid #a92524; padding: 4px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="ink-seal"] .proof-close { background: #1c1c1a; color: #fbf8f1; border-radius: 4px; text-align: center; }
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme="aurora-chain"] .proof-lead { background: #e6fbf8; border-radius: 0 8px 8px 0; border-left: 4px solid #00c2b8; color: #16152e; font-weight: 700; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="aurora-chain"] .proof-chapter { background: linear-gradient(115deg, #2e2a6b, #6d4fd6); color: #fff; border-radius: 8px; padding: 6px 10px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="aurora-chain"] .proof-chapter span { color: #00c2b8; border-right: 1px solid #ffffff4d; padding-right: 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="aurora-chain"] .proof-steps li { background: #fff; border: 1px solid #e2e4f0; border-left: 3px solid #00c2b8; padding: 4px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="aurora-chain"] .proof-close { background: linear-gradient(135deg, #2e2a6b, #6d4fd6); color: #d8d4f5; border-radius: 8px; box-shadow: 0 6px 18px -6px rgba(109,79,214,0.45); }
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-lead { background: transparent; border-block: 1px solid #e5e0d3; color: #2b2824; font-weight: 600; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-title { font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-chapter { display: block; border-bottom: 0; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-chapter span { display: block; color: #b8923f; font-size: 12px; letter-spacing: .2em; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-chapter h4 { font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-steps li { border-bottom: 1px solid #e5e0d3; padding: 6px 2px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="stone-patina"] .proof-close { text-align: center; padding: 12px 6px 3px; font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif; }
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-title { color: #111111; font-weight: 900; border-top: 5px solid #111111; box-shadow: inset 0 3px 0 #f4f1ea, inset 0 4px 0 #111111; padding-top: 9px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-lead { background: transparent; border-left: 3px solid #c8102e; color: #111111; font-weight: 700; padding: 2px 10px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-chapter { border-bottom: 2px solid #111111; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-chapter span { background: #c8102e; color: #ffffff; padding: 0 6px; font-weight: 900; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-chapter h4 { font-weight: 900; color: #111111; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-paragraph { text-indent: 0; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-steps li { background: #ffffff; border-top: 2px solid #111111; padding: 5px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-number { color: #c8102e; font-size: 15px; font-weight: 900; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="press-extra"] .proof-close { background: #111111; color: #ffffff; border-top: 4px solid #c8102e; font-weight: 700; }
+
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-title { color: #2f3e5c; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-lead { background: #fff4c2; color: #2f3e5c; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,.08); font-weight: 600; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-chapter { display: inline-flex; background: rgba(247,215,116,0.85); padding: 3px 12px 3px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-chapter span, #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-chapter h4 { color: #2f3e5c; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-paragraph { text-indent: 0; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-paragraph span { border-bottom: 0; background: linear-gradient(180deg, transparent 56%, #f7d774 56%); }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-steps li { background: #e3f5ec; border-radius: 2px; box-shadow: 0 2px 5px rgba(0,0,0,.08); padding: 6px 8px; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-steps li:nth-child(2) { background: #fde8e8; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-number { color: #3e9c7e; }
+  #zh-wechat-theme-atlas .atlas-article[data-theme="memo-notebook"] .proof-close { background: #fde8e8; color: #2f3e5c; text-align: center; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,.08); font-weight: 600; }
+
+  @media (max-width: 530px) {
+    #zh-wechat-theme-atlas .atlas-detail { grid-template-columns: minmax(0, 1fr); }
+    #zh-wechat-theme-atlas .atlas-selection { border-top: 1px solid var(--rule); padding-top: 13px; }
+    #zh-wechat-theme-atlas .atlas-action input { font-size: 16px; }
+  }
+  @media (max-width: 365px) {
+  }
+</style>
+
+<script>
+(() => {
+  const atlas = document.getElementById('zh-wechat-theme-atlas');
+  const themes = [
+    { id: 'brand-blueprint', name: '品牌深蓝·蓝图（金）', main: '#020581', accent: '#D6A841', tint: '#E8EEFD', paper: '#FFFFFF', underline: '#2F6BFF',
+      use: '科技/产业品牌的产品、技术科普，尤其配图是深蓝科技风 + 金色元素时。', traits: '深蓝章节条搭金色编号，浅金引言、蓝边能力卡和深蓝收束，默认配色。' },
+    { id: 'brand-blueprint-silver', name: '品牌深蓝·蓝图（银）', main: '#0F1B4C', accent: '#B8BDC9', tint: '#EAF0FA', paper: '#FFFFFF', underline: '#5B6FB8',
+      use: '同蓝图版式，换成午夜蓝 + 银灰点缀，气质更冷静、工业感更强。', traits: '午夜蓝章节条搭银灰编号，浅灰蓝引言卡，适合硬件、制造、安全类稿件。' },
+    { id: 'brand-blueprint-copper', name: '品牌深蓝·蓝图（铜）', main: '#142850', accent: '#C77B3B', tint: '#EDF1F8', paper: '#FFFFFF', underline: '#4D6FA8',
+      use: '同蓝图版式，换成藏青 + 铜橙点缀，比金色版更沉稳内敛。', traits: '藏青章节条搭铜色编号，暖灰蓝引言卡，适合深度评测、机制说明类稿件。' },
+    { id: 'brand-blueprint-teal', name: '品牌深蓝·蓝图（青）', main: '#1B3A5C', accent: '#2FB6A3', tint: '#E7F6F3', paper: '#FFFFFF', underline: '#2FB6A3',
+      use: '同蓝图版式，换成钢蓝 + 青绿点缀，更贴近互联网/数据科技气质。', traits: '钢蓝章节条搭青绿编号，浅青引言卡，适合算力、数据、云服务类稿件。' },
+    { id: 'ink-seal', name: '宣纸·朱印', main: '#1C1C1A', accent: '#A92524', tint: '#F3E3DD', paper: '#FBF8F1', underline: '#A92524',
+      use: '文化/历史叙事、有传承或匠心调性的科普、品牌年度总结。', traits: '水墨宣纸质感，朱印方框编号+墨色衬线标题，正文首行缩进 2em。' },
+    { id: 'aurora-chain', name: '极光链语', main: '#2E2A6B', accent: '#00C2B8', tint: '#F2EFFC', paper: '#FFFFFF', underline: '#00C2B8',
+      use: '区块链/分布式网络、算力、数据基础设施、面向未来的愿景类内容。', traits: '靛紫→紫罗兰渐变章节块，青色荧光编号与下划线，气质偏未来科技网络感。' },
+    { id: 'stone-patina', name: '原石·雅痕', main: '#2B2824', accent: '#B8923F', tint: '#F7F1E2', paper: '#F8F6F1', underline: '#B8923F',
+      use: '品牌故事、企业文化、年度/阶段性总结、高端产品发布。', traits: '暖灰白底+细金线点缀，不用深色大色块，留白最多、最克制的一套。' },
+    { id: 'press-extra', name: '铅字·号外', main: '#111111', accent: '#C8102E', tint: '#EAE6DC', paper: '#F4F1EA', underline: '#C8102E',
+      use: '热点快评、行业快讯、数据新闻、周报月报、事件复盘、立场鲜明的观点稿。', traits: '报头粗细双线、红底栏目号、通栏黑线、红字数据块、黑底"本期结论"卡，全直角报纸感。' },
+    { id: 'memo-notebook', name: '便笺·手帐', main: '#2F3E5C', accent: '#F7D774', tint: '#FFF4C2', paper: '#FFFDF7', underline: '#F7D774',
+      use: '新手教程、生活方式、读书学习笔记、团队日常与活动回顾、轻松向科普。', traits: '活页孔、和纸胶带章节（四色轮换）、荧光笔重点、便利贴、拍立得图片，唯一一套轻松向主题。' }
+  ];
+
+  const picker = atlas.querySelector('.atlas-themes');
+  const article = atlas.querySelector('.atlas-article');
+  const palette = atlas.querySelector('.atlas-palette');
+  const prompt = atlas.querySelector('#zh-atlas-prompt');
+  const status = atlas.querySelector('.atlas-status');
+  const name = atlas.querySelector('.atlas-name');
+  const use = atlas.querySelector('.atlas-use');
+  const traits = atlas.querySelector('.atlas-traits');
+  const storageKey = 'gzh-design-atlas-theme';
+  const buttons = new Map();
+
+  function applyTheme(element, theme) {
+    element.dataset.theme = theme.id;
+    element.style.setProperty('--main', theme.main);
+    element.style.setProperty('--tint', theme.tint);
+    element.style.setProperty('--paper', theme.paper);
+    element.style.setProperty('--underline', theme.underline);
+    if (theme.accent) element.style.setProperty('--accent', theme.accent);
+  }
+
+  function showTheme(theme) {
+    for (const [id, button] of buttons) button.setAttribute('aria-pressed', String(id === theme.id));
+    applyTheme(article, theme);
+    name.textContent = theme.name;
+    use.textContent = theme.use;
+    traits.textContent = theme.traits;
+    prompt.value = `公众号排版主题：${theme.name}`;
+    status.textContent = '';
+    palette.replaceChildren(...[theme.main, theme.accent].filter(Boolean).map((color) => {
+      const chip = document.createElement('span');
+      const dot = document.createElement('i');
+      dot.setAttribute('aria-hidden', 'true');
+      dot.style.setProperty('--swatch', color);
+      chip.append(dot, color);
+      return chip;
+    }));
+  }
+
+  function restoreTheme(id) {
+    const theme = themes.find((entry) => entry.id === id);
+    if (theme) showTheme(theme);
+  }
+
+  function saveTheme(theme) {
+    if (window.openai?.setWidgetState) {
+      window.openai.setWidgetState({ modelContent: { theme: theme.name }, privateContent: { themeId: theme.id } }).catch(() => {});
+      return;
+    }
+    try { localStorage.setItem(storageKey, theme.id); } catch {}
+  }
+
+  for (const theme of themes) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'atlas-option cursor-interaction';
+    button.innerHTML = '<span class="atlas-mini" aria-hidden="true"><span class="mini-top"></span><span class="mini-heading"></span><span class="mini-body"></span></span>';
+    const label = document.createElement('span');
+    label.className = 'atlas-option-name';
+    const [prefix, suffix] = theme.name.split('·');
+    if (suffix) {
+      const end = document.createElement('span');
+      end.textContent = suffix;
+      label.append(prefix + '·', document.createElement('wbr'), end);
+    } else {
+      label.textContent = theme.name;
+    }
+    button.append(label);
+    applyTheme(button, theme);
+    button.addEventListener('click', () => { showTheme(theme); saveTheme(theme); });
+    picker.append(button);
+    buttons.set(theme.id, button);
+  }
+
+  atlas.querySelector('.atlas-copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(prompt.value);
+      status.textContent = '已复制，可直接粘贴到文章消息。';
+    } catch {
+      prompt.focus();
+      prompt.select();
+      let copied = false;
+      try { copied = document.execCommand('copy'); } catch {}
+      status.textContent = copied ? '已复制，可直接粘贴到文章消息。' : '已选中文字，请手动复制。';
+    }
+  });
+  prompt.addEventListener('focus', () => prompt.select());
+
+  showTheme(themes[0]);
+  if (window.openai) {
+    restoreTheme(window.openai.widgetState?.privateContent?.themeId);
+    window.addEventListener('openai:set_globals', (event) => restoreTheme(event.detail?.globals?.widgetState?.privateContent?.themeId));
+  } else {
+    try { restoreTheme(localStorage.getItem(storageKey)); } catch {}
+  }
+})();
+</script>
+</main>
+</body>
+</html>
